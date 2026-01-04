@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #152938;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  color: white;
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: white;
+  width: 420px;
+  margin: auto;
+  padding: 32px;
+  border-radius: 16px;
+}
+
+h2 {
+  text-align: left;
+  color: #7191a5;
+  font-size: 14px;
+  margin: 20px 0 10px;
+}
+
+/* 🔥 YONMA-YON QILADIGAN QISM */
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  border: none;
+  padding: 12px 0;
+  border-radius: 26px;
+  background: #bcced9;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button.active {
+  background: #304859;
+}
+
+.start {
+  margin-top: 30px;
+  background: #fda214;
+  font-size: 20px;
+  padding: 14px 0;
+}
