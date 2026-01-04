@@ -4,6 +4,23 @@
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
+.game {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  gap: 10px;
+  justify-content: center;
+}
+
+.box {
+  height: 80px;
+  background: #152938;
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
 
 body {
   background: #152938;
