@@ -112,7 +112,6 @@ function startGame() {
   const game = document.querySelector(".game");
   game.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
 
-  // Generate cards
   let cardsArray = [];
   if (theme === "Numbers") {
     let numbers = [];
@@ -137,19 +136,16 @@ function startGame() {
     game.appendChild(card);
   });
 
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("restart")) {
-      clearInterval(timerInterval);
-      startGame();
-    }
-  });
+  document.querySelector(".restart").onclick = () => {
+    clearInterval(timerInterval);
+    console.log(startGame());
+  };
 
   document.querySelector(".newgame").onclick = () => {
     clearInterval(timerInterval);
     section.innerHTML = menuHTML;
   };
 }
-
 function handleCard(card) {
   if (lock) return;
   if (card === firstCard) return;
