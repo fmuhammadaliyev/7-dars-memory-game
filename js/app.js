@@ -1,7 +1,6 @@
 const section = document.querySelector("#app");
 const menuHTML = section.innerHTML;
 
-// STICKERS
 const stickers = [
   "🍎",
   "🍌",
@@ -29,7 +28,6 @@ const stickers = [
   "✈️",
 ];
 
-// GAME STATE
 let firstCard = null;
 let secondCard = null;
 let lock = false;
@@ -47,14 +45,11 @@ let timerInterval;
 
 let theme = "Numbers";
 
-// SOUNDS
 const flipSound = document.getElementById("flipSound");
 const matchSound = document.getElementById("matchSound");
 const winSound = document.getElementById("winSound");
 
-// BUTTON CLICK HANDLER
 document.addEventListener("click", (e) => {
-  // THEME SELECT
   if (e.target.parentElement.classList.contains("theme")) {
     e.target.parentElement
       .querySelectorAll("button")
@@ -62,7 +57,6 @@ document.addEventListener("click", (e) => {
     e.target.classList.add("active");
   }
 
-  // PLAYER SELECT
   if (e.target.parentElement.classList.contains("players")) {
     e.target.parentElement
       .querySelectorAll("button")
@@ -70,7 +64,6 @@ document.addEventListener("click", (e) => {
     e.target.classList.add("active");
   }
 
-  // GRID SELECT
   if (e.target.parentElement.classList.contains("grid")) {
     e.target.parentElement
       .querySelectorAll("button")
@@ -78,26 +71,20 @@ document.addEventListener("click", (e) => {
     e.target.classList.add("active");
   }
 
-  // START GAME
   if (e.target.classList.contains("start")) {
     startGame();
   }
 });
 
-// READ SETTINGS
 function readSettings() {
-  // Players
   players = parseInt(document.querySelector(".players .active").innerText);
 
-  // Grid size
   gridSize =
     document.querySelector(".grid .active").innerText === "6x6" ? 6 : 4;
 
-  // Theme
   theme = document.querySelector(".theme .active").innerText;
 }
 
-// START GAME
 function startGame() {
   readSettings();
 
@@ -139,10 +126,8 @@ function startGame() {
     cardsArray = [...chosen, ...chosen];
   }
 
-  // Shuffle
   cardsArray.sort(() => Math.random() - 0.5);
 
-  // Create cards
   cardsArray.forEach((val) => {
     const card = document.createElement("div");
     card.className = "box";
@@ -152,7 +137,6 @@ function startGame() {
     game.appendChild(card);
   });
 
-  // Restart
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("restart")) {
       clearInterval(timerInterval);
@@ -160,14 +144,12 @@ function startGame() {
     }
   });
 
-  // New Game (back to menu)
   document.querySelector(".newgame").onclick = () => {
     clearInterval(timerInterval);
     section.innerHTML = menuHTML;
   };
 }
 
-// CARD CLICK
 function handleCard(card) {
   if (lock) return;
   if (card === firstCard) return;
@@ -185,18 +167,15 @@ function handleCard(card) {
   }
 }
 
-// CHECK MATCH
 function checkMatch() {
   if (firstCard.dataset.value === secondCard.dataset.value) {
     matchSound?.play();
 
-    // Topilgan kartalar doim ochiq qoladi
     firstCard.classList.add("matched");
     secondCard.classList.add("matched");
     firstCard.innerText = firstCard.dataset.value;
     secondCard.innerText = secondCard.dataset.value;
 
-    // Ball shu playerga qo‘shiladi
     scores[currentPlayer]++;
     matchedPairs++;
 
@@ -207,7 +186,6 @@ function checkMatch() {
       endGame();
     }
   } else {
-    // Noto‘g‘ri topilgan
     lock = true;
     setTimeout(() => {
       firstCard.innerText = "❓";
@@ -217,7 +195,6 @@ function checkMatch() {
 
       resetCards();
 
-      // Player almashadi
       currentPlayer = (currentPlayer + 1) % players;
       updateScores();
 
@@ -226,13 +203,11 @@ function checkMatch() {
   }
 }
 
-// RESET CARDS
 function resetCards() {
   firstCard = null;
   secondCard = null;
 }
 
-// SCORES
 function updateScores() {
   const scoresDiv = document.querySelector(".scores");
   scoresDiv.innerHTML = scores
@@ -246,7 +221,6 @@ function updateScores() {
     .join("");
 }
 
-// TIMER
 function startTimer() {
   time = 0;
   clearInterval(timerInterval);
@@ -256,7 +230,6 @@ function startTimer() {
   }, 1000);
 }
 
-// END GAME
 function endGame() {
   clearInterval(timerInterval);
   winSound?.play();
