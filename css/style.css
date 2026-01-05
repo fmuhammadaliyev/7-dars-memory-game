@@ -84,3 +84,88 @@ button.active {
   font-size: 20px;
   padding: 14px 0;
 }
+
+.controls button {
+  padding: 10px 20px;
+  background: #c8a367;
+}
+
+.controls button:hover {
+  background: #fda214;
+  color: #152938;
+}
+
+.timer {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.scores {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.scores p {
+  padding: 10px 14px;
+  background: #304859;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.scores .active-player {
+  background: #fda214;
+  color: #152938;
+  font-weight: bold;
+}
+
+.game {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 480px;
+  margin: auto;
+}
+
+.box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #304859;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  transition: transform 0.4s, background 0.3s;
+  transform: rotateY(0deg);
+}
+
+.box:hover {
+  background: #3c5a6b;
+}
+
+.box.open,
+.box.matched {
+  background: #fda214;
+}
+
+.box.matched {
+  cursor: default;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  .box {
+    font-size: 28px;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+}
